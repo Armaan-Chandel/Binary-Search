@@ -1,0 +1,41 @@
+int r(vector<int>& arr,int low,int high,int tar){
+        int ans=-1;
+        while(low<=high){
+            int mid=(high+low)/2;
+            if(arr[mid]>=tar){
+                high=mid-1;
+                if(arr[mid]==tar) ans=mid;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+    int l(vector<int>& arr,int low,int high,int tar){
+        int ans=-1;
+        while(low<=high){
+            int mid=(high+low)/2;
+            if(arr[mid]<=tar){
+                low=mid+1;
+                if(arr[mid]==tar) ans=mid;
+            }
+            else{
+                high=mid-1;
+            }    
+        }
+        return ans;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int low=0;
+        int high=nums.size()-1;
+       
+        vector<int> arr;
+        int rh=r(nums,low,high,target);
+        int lh=l(nums,low,high,target);
+            arr.push_back(rh);
+            arr.push_back(lh);
+       
+    
+      return arr;
+    }
