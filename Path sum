@@ -1,0 +1,30 @@
+class Solution {
+    
+public:
+    bool sol(TreeNode* root,int t,int sum){
+        if(root==NULL){
+            return false;
+        }
+        if(root->left==NULL and root->right==NULL){
+            sum+=root->val;
+            return sum==t;
+        }
+        sum+=root->val;
+        bool l=sol(root->left,t,sum);
+        bool r=sol(root->right,t,sum);
+        sum-=root->val;
+        if(l or r){
+            return true;
+        }
+        
+        return false;
+    }
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        int sum=0;
+        if(root==NULL){
+            return 0;
+        }
+        return sol(root,targetSum,sum);
+        //return false;
+    }
+};
